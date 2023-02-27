@@ -30,14 +30,12 @@ class _LoginPageState extends State<LoginPage> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Container(height: 150,width: 300,
+                        SizedBox(height: 150,width: 300,
                           child: Image.asset("assets/logos/perf_rse.png",height: 150,
                           ),),
                         const SizedBox(height: 30,),
                         Image.asset("assets/images/ordinateur.png",height: 350,),
                         const SizedBox(height: 20,),
-                        //CustomText(text: "Performance",size: 80,weight: FontWeight.bold,color: Color(0xFF2B78E4),),
-                        //const CustomText(text: "RSE",size: 40,weight: FontWeight.bold,color: Color(0xFF009E0F),),
                         const SizedBox(height: 20,),
                         const Text("Avec Performance RSE, piloter et mesurer votre stratégie de Développement Durable en toute simplicité.",style: TextStyle(
                               fontSize: 25,fontStyle: FontStyle.italic,fontWeight: FontWeight.bold,color: Color(0xFF6E4906)),),

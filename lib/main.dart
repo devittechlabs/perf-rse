@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import 'view/common/login_page/login_page.dart';
+import 'package:perf_rse/theme/themes.dart';
 import 'routes/routes.dart';
 
 void main() {
@@ -14,10 +13,8 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      title: 'Performance RSE',
+      theme: Themes.ligthTheme,
       routerConfig: RouteClass.router,
     );
   }

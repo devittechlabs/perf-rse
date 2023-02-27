@@ -16,7 +16,7 @@ class CopyRight extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: const [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 20.0),
+            padding: EdgeInsets.symmetric(horizontal: 30.0),
             child:Text(
               "Copyright @ Vision & Strategie Holding",
               style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),
