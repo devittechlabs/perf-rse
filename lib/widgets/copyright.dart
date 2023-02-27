@@ -5,6 +5,8 @@ class CopyRight extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var height = MediaQuery.of(context).size.height;
+    var width = MediaQuery.of(context).size.width;
     return Container(
       height: 40,
       decoration: BoxDecoration(
@@ -14,12 +16,12 @@ class CopyRight extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
-        children: const [
+        children: [
           Padding(
-            padding: EdgeInsets.symmetric(horizontal: 30.0),
+            padding: const EdgeInsets.symmetric(horizontal: 30.0),
             child:Text(
-              "Copyright @ Vision & Strategie Holding",
-              style: TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),
+              "Copyright @ Vision & Strategie Holding ${width} x ${height}",
+              style: const TextStyle(fontSize: 15,fontWeight: FontWeight.bold,color: Colors.white),
             ),
           )
         ],

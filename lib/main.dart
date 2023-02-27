@@ -1,8 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:perf_rse/theme/themes.dart';
+import 'package:perf_rse/view/common/login_page/login_page.dart';
+import 'package:perf_rse/view/common/main_page/main_page.dart';
+import 'controller/auth_controller.dart';
 import 'routes/routes.dart';
+import 'package:get/get.dart';
 
 void main() {
+  Get.put(AuthController());
   runApp(const MyApp());
 }
 
