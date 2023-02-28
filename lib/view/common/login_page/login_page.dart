@@ -4,6 +4,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:get/get.dart';
 
 import '../../../constants/colors.dart';
+import '../../../controller/auth_controller.dart';
 import '../../../widgets/export_widget.dart';
 
 class LoginPage extends StatefulWidget {
@@ -14,6 +15,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+
+
+  final AuthController authController  = Get.find();
 
   final _formKey = GlobalKey<FormState>();
   bool _obsureText = true;
@@ -185,6 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                                     SizedBox(height: 10,),
                                     ElevatedButton(
                                         onPressed: () async {
+                                          authController.saveUserData(_emailController.text.trim());
                                           context.go('/');
                                         },
                                         style: ElevatedButton.styleFrom(
@@ -201,10 +206,10 @@ class _LoginPageState extends State<LoginPage> {
                                             color: Colors.white,
                                           ),
                                         )),
-                                    SizedBox(height: 10,),
+                                    const SizedBox(height: 10,),
                                     TextButton(
                                         onPressed: (){
-                                          context.go('/accounts/reset-password');
+                                          context.go('/accounts/forgot-password');
                                         },
                                         child: const CustomText(
                                       text: "J’ai oublié mon mot de passe",

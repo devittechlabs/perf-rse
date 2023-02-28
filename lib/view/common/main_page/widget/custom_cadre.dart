@@ -4,8 +4,9 @@ import '../../../../widgets/export_widget.dart';
 class CustomCadre extends StatefulWidget {
   final String imagePath;
   final String titreCadre;
+  final Function()? onTap;
   const CustomCadre(
-      {Key? key, required this.imagePath, required this.titreCadre})
+      {Key? key, required this.imagePath, required this.titreCadre, required this.onTap})
       : super(key: key);
 
   @override
@@ -24,8 +25,7 @@ class _CustomCadreState extends State<CustomCadre> {
           _hovered = value;
         });
       },
-      onTap: () async {
-      },
+      onTap: widget.onTap,
       child: Container(
         padding: EdgeInsets.all(5),
         child: Column(
@@ -41,8 +41,8 @@ class _CustomCadreState extends State<CustomCadre> {
                   child: ClipOval(
                     child: Image.asset(
                       widget.imagePath,
-                      width: 150,
-                      height: 160,
+                      width: 200,
+                      height: 200,
                     ),
                   ),
                 ),

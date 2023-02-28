@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import '../../../controller/auth_controller.dart';
 import '../../../widgets/export_widget.dart';
 import 'widget/banniere.dart';
 import 'widget/custom_cadre.dart';
@@ -16,18 +19,13 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPageState extends State<MainPage> {
-  String? name = "";
-  void loadingData() async {
-    final prefs = await SharedPreferences.getInstance();
-    name = prefs.getString('user');
-    setState(() {
 
-    });
-  }
+  final AuthController authController  = Get.find();
+  final box = GetStorage();
+
 
   @override
   void initState() {
-    loadingData();
     super.initState();
   }
 
@@ -35,7 +33,7 @@ class _MainPageState extends State<MainPage> {
   Widget build(BuildContext context) {
     return SelectionArea(
       child: Scaffold(
-        appBar: headerMainPage(name:name),
+        appBar: headerMainPage(name:"Fabrice HOUESSOU"),
         body: Column(
           children: [
             Expanded(
@@ -84,16 +82,21 @@ class _MainPageState extends State<MainPage> {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               crossAxisAlignment: CrossAxisAlignment.center,
-                              children: const [
+                              children: [
                                 CustomCadre(
+                                  onTap: () async {},
                                   imagePath: "assets/images/audit_rse.png",
                                   titreCadre: "Evaluation",
                                 ),
                                 CustomCadre(
+                                  onTap: (){
+                                    context.go('/pilotage');
+                                  },
                                   imagePath: "assets/images/pilotage_rse.jpg",
                                   titreCadre: "Pilotage",
                                 ),
                                 CustomCadre(
+                                  onTap: (){},
                                   imagePath: "assets/images/reporting_rse.jpg",
                                   titreCadre: "Reporting",
                                 ),
@@ -119,7 +122,8 @@ class _MainPageState extends State<MainPage> {
                                 size: 50,
                               ),
                               onPressed: () async {
-                                context.go('/login');
+                                box.remove('isLogin');
+                                context.go('/accounts/login');
                               },
                             ),
                           ),

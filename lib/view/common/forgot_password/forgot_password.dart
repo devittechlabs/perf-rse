@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 import 'package:perf_rse/widgets/copyright.dart';
 import 'package:perf_rse/widgets/custom_text.dart';
 
@@ -7,14 +8,15 @@ import 'widgets/confirm_reseting.dart';
 import 'controllers/reseting_password_controller.dart';
 import 'package:get/get.dart';
 
-class ResetPassword extends StatefulWidget {
-  const ResetPassword({Key? key}) : super(key: key);
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({Key? key}) : super(key: key);
 
   @override
-  State<ResetPassword> createState() => _ResetPasswordState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _ResetPasswordState extends State<ResetPassword> {
+class _ForgotPasswordState extends State<ForgotPassword> {
+  var onHoverLogin = false;
   final resetPassWordController = Get.put(ResetPassWordController());
 
   @override
@@ -48,6 +50,26 @@ class _ResetPasswordState extends State<ResetPassword> {
                     margin: EdgeInsets.only(right: 100),
                     child: Row(
                       children: [
+                        InkWell(
+                            onTap: (){
+                              context.go('/accounts/login');
+                            },
+                            onHover: (value){
+                              if(value){
+                                setState(() {
+                                  onHoverLogin = true;
+                                });
+                              }else {
+                                setState(() {
+                                  onHoverLogin = false;
+                                });
+                              }
+                            },
+                            child: CustomText(
+                              text: "Se Connecter",
+                              color: onHoverLogin ? Colors.white :Colors.black,
+                            )),
+                        SizedBox(width: 20,),
                         Icon(
                           Icons.language,
                           color: Colors.white,

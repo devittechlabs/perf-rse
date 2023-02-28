@@ -7,6 +7,6 @@ class Banniere extends StatelessWidget {
   Widget build(BuildContext context) {
     return ClipRRect(
         borderRadius: BorderRadius.circular(20.0),
-        child: Image.asset("assets/images/bannieresifca.png",width: 1300,height: 200,fit: BoxFit.fill,));
+        child: Image.asset("assets/images/bannieresifca.png",width: 1300,height: 250,fit: BoxFit.fill,));
   }
 }
