@@ -3,12 +3,11 @@ import 'package:get_storage/get_storage.dart';
 import 'package:go_router/go_router.dart';
 import 'package:perf_rse/controller/auth_controller.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import '../view/export_page.dart';
-import 'package:get/get.dart';
+import '../views/export_page.dart';
 
 class RouteClass {
   static final router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/accounts/login',
     errorBuilder: (context, state) {
       return PageNotFound();
     },
@@ -45,11 +44,7 @@ class RouteClass {
             GoRoute(
                 path: 'accueil/entite',
                 builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
-                  );
+                  return const PilotageEntiteOverview();
                 }),
             GoRoute(
                 path: 'performances/entite',
@@ -63,19 +58,15 @@ class RouteClass {
             GoRoute(
                 path: 'suivi/entite',
                 builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
+                  return Center(
+                    child: Text("${state.fullpath}"),
                   );
                 }),
             GoRoute(
                 path: 'tableau-de-bord/entite',
                 builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
+                  return Center(
+                    child: Text("${state.fullpath}"),
                   );
                 },
                 routes: [
@@ -94,10 +85,8 @@ class RouteClass {
             GoRoute(
                 path: 'admin/entite',
                 builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
+                  return Center(
+                    child: Text("${state.fullpath}"),
                   );
                 }),
             GoRoute(
