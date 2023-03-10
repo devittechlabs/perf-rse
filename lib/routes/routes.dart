@@ -7,7 +7,7 @@ import '../views/export_page.dart';
 
 class RouteClass {
   static final router = GoRouter(
-    initialLocation: '/accounts/login',
+    initialLocation: '/',
     errorBuilder: (context, state) {
       return PageNotFound();
     },
@@ -20,74 +20,61 @@ class RouteClass {
       GoRoute(
           path: '/pilotage',
           builder: (context, state) {
-            return PilotageHome();
+            return const PilotageHome();
           },
           routes: [
             GoRoute(
-                path: 'profile/@fabhouessou',
-                builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
-                  );
-                }),
-            GoRoute(
-                path: 'profile/entite/@fabhouessou',
-                builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
-                  );
-                }),
-            GoRoute(
-                path: 'accueil/entite',
-                builder: (context, state) {
-                  return const PilotageEntiteOverview();
-                }),
-            GoRoute(
-                path: 'performances/entite',
-                builder: (context, state) {
-                  return Container(
-                    child: Center(
-                      child: Text("${state.fullpath}"),
-                    ),
-                  );
-                }),
-            GoRoute(
-                path: 'suivi/entite',
+                path: 'profil',
                 builder: (context, state) {
                   return Center(
                     child: Text("${state.fullpath}"),
                   );
                 }),
             GoRoute(
-                path: 'tableau-de-bord/entite',
+                path: 'entite/profil',
                 builder: (context, state) {
-                  return Center(
-                    child: Text("${state.fullpath}"),
-                  );
+                  return const PilotageEntiteOverview(urlPath: "profil");
+                }),
+            GoRoute(
+                path: 'entite/vue-ensemble',
+                pageBuilder: (context, state) => NoTransitionPage<void>(
+                  key: state.pageKey,
+                  restorationId: state.pageKey.value,
+                  child: const PilotageEntiteOverview(urlPath: "vue-ensemble"),
+                )
+            ),
+            GoRoute(
+                path: 'entite/performances',
+                builder: (context, state) {
+                  return const PilotageEntiteOverview(urlPath: "performances");;
+                }),
+            GoRoute(
+                path: 'entite/suivi-des-donnees',
+                builder: (context, state) {
+                  return const PilotageEntiteOverview(urlPath: "suivi");
+                }),
+            GoRoute(
+                path: 'entite/tableau-de-bord',
+                builder: (context, state) {
+                  return const PilotageEntiteOverview(urlPath: "tableau-de-bord");
                 },
                 routes: [
                   GoRoute(
-                      path: 'indicateurs/gen-001',
-                      builder: (context, state) {
-                        return Container(
-                          child: Center(
-                            child: Text("${state.fullpath}"),
-                          ),
-                        );
-                      },
+                    path: 'indicateurs/gen-001',
+                    builder: (context, state) {
+                      return Container(
+                        child: Center(
+                          child: Text("${state.fullpath}"),
+                        ),
+                      );
+                    },
                   )
                 ]
             ),
             GoRoute(
-                path: 'admin/entite',
+                path: 'entite/admin',
                 builder: (context, state) {
-                  return Center(
-                    child: Text("${state.fullpath}"),
-                  );
+                  return const PilotageEntiteOverview(urlPath: "admin");
                 }),
             GoRoute(
                 path: 'ressources/organigramme',

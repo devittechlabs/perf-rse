@@ -1,13 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
-
 import '../../../../../constants/colors.dart';
 import '../../../../../widgets/custom_full_screen_dialog.dart';
 import '../../../../../widgets/custom_text.dart';
 import '../../../../../widgets/menu_deroulant.dart';
 import '../../../../../widgets/unimpleted_widget.dart';
-
 
 class EntityWidget extends StatefulWidget {
   const EntityWidget({Key? key}) : super(key: key);
@@ -28,22 +26,24 @@ class _EntityWidgetWidgetState extends State<EntityWidget> {
 
   @override
   Widget build(BuildContext context) {
-      return Container(
+
+    final filiale = "sania";
+    return  Container(
         alignment: Alignment.bottomRight,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.start,
           children: [
             CustomText(text: "Tableau de Bord",weight: FontWeight.bold,size: 20,),
             const SizedBox(width: 10,),
-            Image.asset("assets/logos/logo_sifca_bon.png",height: 50,width : 72,fit: BoxFit.fitWidth,),
+            Image.asset("assets/logos/logo_${filiale}.png",height: 50,width : 72,fit: BoxFit.fitWidth,),
             const SizedBox(width: 10,),
             const CustomText(text: "Entité",size: 20,),
             const SizedBox(width: 5,),
             MenuDeroulant(
               indication: "",
-              items: ["Sucrvoire Siège","Sucrvoire"],
+              items: ["Sania","Palmci"],
               width: 200,
-              initValue: "Sucrvoire Siège",
+              initValue: "Sania",
               onChanged: (value){
               },
             ),
@@ -52,29 +52,22 @@ class _EntityWidgetWidgetState extends State<EntityWidget> {
             const SizedBox(width: 5,),
             MenuDeroulant(
               indication: "",
-              initValue: "2023",
-              items: ["2021","2022","2023"],
+              initValue: "2022",
+              items: ["2022","2023"],
               width: 100,
               selectedValue: selectedValueYear,
               onChanged2: (value){
-                /*setState(() {
-                  if (value!=null && int.parse(value)<= 2022){
-                    selectedValueYear = value;
-                    if (value!=null) pDashBoardController.changeYear(value);
-                  }
-                });
-                pDashBoardController.updateListRealiseAn();*/
               },
             ),
             const SizedBox(width: 10,),
             const CustomText(text: "Mois",size: 20,),
             const SizedBox(width: 5,),
-            MenuDeroulant(
+             MenuDeroulant(
                 initValue: "Janvier",
                 indication: "",
-                items: ["Janvier","Février","Mars","Avril"],
+                items: ["Janvier","Février"],
                 width: 125,
-                selectedValue: "Janvier",
+                selectedValue: "2022",
                 onChanged2: (value){
                 },
               ),
@@ -84,10 +77,9 @@ class _EntityWidgetWidgetState extends State<EntityWidget> {
               child: IconButton(onPressed: () async{
                 CustomFullScreenDialog.showDialog();
                 await Future.delayed(Duration(seconds: 10));
-                //String entityPrimaire = userController.user.accesPilotage!.entitePrimaire!;
-                //bool resultUpdate = await pTableauController.onAppLoadingEntityData(entityPrimaire);
+                final resultUpdate = DateTime.now().minute.isOdd;
                 await Future.delayed(const Duration(seconds: 1));
-                if (true){
+                if (resultUpdate == true){
                   ScaffoldMessenger.of(context).showSnackBar(
                     const SnackBar(content: Text("L'actualisation des données a bien été éffectué"),duration: Duration(seconds: 2),backgroundColor: Colors.green,),
                   );
@@ -120,7 +112,7 @@ class _EntityWidgetWidgetState extends State<EntityWidget> {
                   borderRadius: const BorderRadius.all(Radius.circular(30.0)),
                 ),
                 child: CustomText(
-                  text: "Administrateur",
+                  text: "Admin",
                   size: 13,
                   color: Colors.green,
                 ))
@@ -128,17 +120,6 @@ class _EntityWidgetWidgetState extends State<EntityWidget> {
         ),
       );
   }
-  /*String getAccesPilote(AccesPilotageModel? accesPilotageModel){
-    if (accesPilotageModel == null ) return "";
-    if (accesPilotageModel.estAdmin == true) {
-      return "Administrateur";
-    }else {
-      String collecteur = (accesPilotageModel.estCollecteur!=null && accesPilotageModel.estCollecteur==true) ? "Collecteur - ":"";
-      String validateur = (accesPilotageModel.estValidateur!=null && accesPilotageModel.estValidateur==true) ? "Validateur":"";
-      String accesPilotage = "${collecteur}${validateur}" == "" ? "Spectacteur" : "${collecteur}${validateur}";
-      return accesPilotage;
-    }
-  }*/
 }
 
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
+import 'package:perf_rse/theme/theme.dart';
 import 'package:perf_rse/theme/themes.dart';
 import 'package:perf_rse/views/common/login_page/login_page.dart';
 import 'package:perf_rse/views/common/main_page/main_page.dart';
@@ -13,10 +14,18 @@ Future main() async{
   runApp(const MyApp());
 }
 
-class MyApp extends StatelessWidget {
+class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
+  @override
+  State<MyApp> createState() => _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
+  final settings = ThemeSettings(
+    sourceColor: Colors.amber,
+    themeMode: ThemeMode.system,
+  );
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
@@ -24,6 +33,9 @@ class MyApp extends StatelessWidget {
       theme: Themes.ligthTheme,
       debugShowCheckedModeBanner: false,
       routerConfig: RouteClass.router,
+      //routeInformationParser: RouteClass.router.routeInformationParser,
+      //routeInformationProvider: RouteClass.router.routeInformationProvider,
+      //routerDelegate: RouteClass.router.routerDelegate,
     );
   }
 }

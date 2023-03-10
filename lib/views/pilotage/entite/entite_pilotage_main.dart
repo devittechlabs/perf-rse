@@ -1,40 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:perf_rse/modules/styled_scrollview.dart';
 import 'package:perf_rse/views/pilotage/controllers/side_menu_controller.dart';
 import 'package:perf_rse/views/pilotage/entite/widgets/side_menu_pilotage.dart';
 import '../../../helper/responsive.dart';
-import 'dashboard/dashboard_screen.dart';
 import 'package:get/get.dart';
+
+import 'overview/overview_pilotage.dart';
+import 'performs/perform_pilotage.dart';
+import 'profil/profil_pilotage.dart';
+import 'suivi/monitoring_pilotage.dart';
+import 'tableau_bord/tableau_bord_pilotage..dart';
+import 'widgets/entete_pilotage_home.dart';
 
 
 class PilotageEntiteOverview extends StatefulWidget {
-  const PilotageEntiteOverview({Key? key}) : super(key: key);
+  final String urlPath;
+  const PilotageEntiteOverview({Key? key, required this.urlPath}) : super(key: key);
 
   @override
   State<PilotageEntiteOverview> createState() => _PilotageEntiteOverviewState();
 }
 
 class _PilotageEntiteOverviewState extends State<PilotageEntiteOverview> {
-
   final SideMenuController sideMenuController = Get.put(SideMenuController());
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: sideMenuController.scaffoldKey,
-      drawer: SideMenuPilotage(),
-      body: SafeArea(child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          if (Responsive.isDesktop(context)) Expanded(flex : 1,child: SideMenuPilotage()),
-          Expanded(
-            // It takes 5/6 part of the screen
-            flex: 5,
-            child: DashboardScreen(),
-          ),
-        ],
-      )),
+      drawer: SideMenuPilotage(currentPath: widget.urlPath,),
+      body: SafeArea(
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (Responsive.isDesktop(context)) SideMenuPilotage(currentPath: widget.urlPath,),
+              Expanded(
+                child: Column(
+                  children: [
+                    HeaderEntitePilotage( title: '${widget.urlPath}',),
+                    Expanded(
+                        child: contentEntitePilotage(widget.urlPath)
+                    )
+                    //OverviewPilotage(),
+                  ],
+                ),
+              ),
+            ],
+          )),
     );
+  }
+  Widget contentEntitePilotage(String menu) {
+    switch (menu){
+      case "vue-ensemble":
+        return OverviewPilotage();
+      case "tableau-de-bord":
+        return TableauBordPilotage();
+      case "performances":
+        return PerformPilotage();
+      case "suivi-des-donnees":
+        return MonitoringPilotage();
+      case "admin":
+        return OverviewPilotage();
+      case "profil":
+        return ProfilPilotage();
+      default :
+        return Container(child: Center(child: Text(menu),),);
+    }
   }
 }
 

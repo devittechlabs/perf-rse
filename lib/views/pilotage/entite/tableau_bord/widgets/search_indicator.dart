@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../../../../widgets/custom_text.dart';
 
 class SearchIndicator extends StatelessWidget {
@@ -8,7 +7,7 @@ class SearchIndicator extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 50,
+      height: 60,
       padding: const EdgeInsets.only(right:10),
       decoration: BoxDecoration(
         border: Border.all(width: 1.0),
@@ -22,7 +21,7 @@ class SearchIndicator extends StatelessWidget {
             child: Container(
               width: 600,
               constraints: const BoxConstraints(
-                minWidth: 200 ///400
+                minWidth: 400
               ),
               child: TextField(
                 decoration: InputDecoration(

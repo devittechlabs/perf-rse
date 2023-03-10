@@ -252,7 +252,7 @@ class _ContentPilotageHomeState extends State<ContentPilotageHome> {
                       children: [
                         TextButton(
                             onPressed: () {
-                              context.go('/pilotage/accueil/entite');
+                              context.go('/pilotage/entite/vue-ensemble');
                             },
                             child: const CustomText(
                               text: "Sucrivoire-Siège",
